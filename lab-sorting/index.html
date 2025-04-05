@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Демонстрація сортувань</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 10px; }
+    pre { background: #f0f0f0; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Демонстрація сортувань з бібліотеки SortLib</h1>
+
+  <button onclick="runAll(false)">▶ Нерозріджений масив</button>
+  <button onclick="runAll(true)">▶ Розріджений масив</button>
+
+  <pre id="output"></pre>
+
+  <script type="module">
+    import SortLib from './sortLib.js';
+
+    function generateArray(length = 100, sparse = false) {
+      const arr = [];
+      for (let i = 0; i < length; i++) {
+        arr[i] = Math.floor(Math.random() * 1000);
+      }
+      if (sparse) {
+        for (let i = 0; i < length / 5; i++) {
+          const index = Math.floor(Math.random() * length);
+          arr[index] = undefined;
+        }
+      }
+      return arr;
+    }
+
+    function runAll(isSparse) {
+      const output = document.getElementById('output');
+      const mode = isSparse ? 'Розріджений' : 'Нерозріджений';
+      const arr = generateArray(100, isSparse);
+
+      output.textContent = `${mode} масив:\n` + JSON.stringify(arr, null, 2) + '\n\n' +
+        'Результати у консолі браузера';
+
+      console.clear();
+      console.log(`%c${mode} масив для сортування:`, 'color:blue; font-weight:bold;');
+      console.log(arr);
+
+      const methods = [
+        ['bubbleSort', SortLib.bubbleSort],
+        ['selectionSort', SortLib.selectionSort],
+        ['insertionSort', SortLib.insertionSort],
+        ['shellSort', SortLib.shellSort],
+        ['quickSort', SortLib.quickSort],
+      ];
+
+      for (const [name, method] of methods) {
+        console.groupCollapsed(`${name} (за зростанням)`);
+        const sortedAsc = method(arr, true);
+        console.log("Відсортовано:", sortedAsc);
+        console.groupEnd();
+
+        console.groupCollapsed(`${name} (за спаданням)`);
+        const sortedDesc = method(arr, false);
+        console.log("Відсортовано:", sortedDesc);
+        console.groupEnd();
+      }
+    }
+  </script>
+</body>
+</html>
