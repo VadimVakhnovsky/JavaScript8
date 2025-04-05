@@ -17,8 +17,12 @@
 
   <pre id="output"></pre>
 
+  <!-- Спочатку підключаємо бібліотеку -->
+  <script type="module" src="lab-sorting/sortLib.js"></script>
+  
+  <!-- Потім підключаємо основний скрипт, який викликає функцію runAll -->
   <script type="module">
-    import SortLib from './sortLib.js';
+    import SortLib from './lab-sorting/sortLib.js';
 
     function generateArray(length = 100, sparse = false) {
       const arr = [];
@@ -68,4 +72,6 @@
     }
   </script>
 </body>
+</html>
+
 </html>
