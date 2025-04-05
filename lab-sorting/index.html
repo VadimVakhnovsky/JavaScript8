@@ -24,6 +24,7 @@
   <script type="module">
     import SortLib from './lab-sorting/sortLib.js';
 
+    // Генерація масиву (як нерозрідженого, так і розрідженого)
     function generateArray(length = 100, sparse = false) {
       const arr = [];
       for (let i = 0; i < length; i++) {
@@ -38,6 +39,7 @@
       return arr;
     }
 
+    // Основна функція для сортування масиву
     function runAll(isSparse) {
       const output = document.getElementById('output');
       const mode = isSparse ? 'Розріджений' : 'Нерозріджений';
@@ -50,6 +52,7 @@
       console.log(`%c${mode} масив для сортування:`, 'color:blue; font-weight:bold;');
       console.log(arr);
 
+      // Массив методів сортування
       const methods = [
         ['bubbleSort', SortLib.bubbleSort],
         ['selectionSort', SortLib.selectionSort],
@@ -58,6 +61,7 @@
         ['quickSort', SortLib.quickSort],
       ];
 
+      // Сортуємо кожним методом по черзі
       for (const [name, method] of methods) {
         console.groupCollapsed(`${name} (за зростанням)`);
         const sortedAsc = method(arr, true);
@@ -73,5 +77,6 @@
   </script>
 </body>
 </html>
+
 
 </html>
