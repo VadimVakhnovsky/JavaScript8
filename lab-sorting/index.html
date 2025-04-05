@@ -40,7 +40,7 @@
     }
 
     // Основна функція для сортування масиву
-    function runAll(isSparse) {
+    window.runAll = function(isSparse) {
       const output = document.getElementById('output');
       const mode = isSparse ? 'Розріджений' : 'Нерозріджений';
       const arr = generateArray(100, isSparse);
@@ -76,7 +76,4 @@
     }
   </script>
 </body>
-</html>
-
-
 </html>
